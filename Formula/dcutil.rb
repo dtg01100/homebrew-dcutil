@@ -6,7 +6,9 @@ class Dcutil < Formula
   license "MIT"
 
   def install
-    inreplace "dcutil", "$SCRIPT_DIR/lib/", "$SCRIPT_DIR/../lib/"
+    inreplace "dcutil", 'SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"', 'SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+LIB_DIR="$SCRIPT_DIR/../lib"'
+    inreplace "dcutil", '"$SCRIPT_DIR/lib/', '"$LIB_DIR/'
     bin.install "dcutil"
     prefix.install "lib"
   end
