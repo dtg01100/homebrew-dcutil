@@ -6,7 +6,9 @@ class Dcutil < Formula
   license "MIT"
 
   def install
+    inreplace "dcutil", "$SCRIPT_DIR/lib/", "$SCRIPT_DIR/../lib/"
     bin.install "dcutil"
+    prefix.install "lib"
   end
 
   test do
