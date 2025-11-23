@@ -19,6 +19,9 @@ class Dcutil < Formula
 
     # Install zsh completion
     zsh_completion.install "_dcutil"
+
+    # Install fish completion
+    fish_completion.install "completion.fish" => "dcutil.fish"
   end
 
   test do

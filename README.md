@@ -17,13 +17,16 @@ For more information, see the [main repository](https://github.com/dtg01100/dcut
 
 ## Tab Completion
 
-This Homebrew formula includes tab completion for both bash and zsh:
+This Homebrew formula includes tab completion for bash, zsh, and fish:
 
 ### Bash
 If you have bash-completion installed, dcutil completion will be automatically available.
 
 ### Zsh
 Zsh completion is installed and will be available automatically if you're using the zsh shell.
+
+### Fish
+Fish completion is installed and will be available automatically if you're using the fish shell.
 
 Alternatively, you can use the built-in completion generation feature:
 ```bash
@@ -32,6 +35,9 @@ dcutil completion bash > /path/to/completions/bash/dcutil
 
 # Generate zsh completion
 dcutil completion zsh > /path/to/completions/zsh/_dcutil
+
+# Generate fish completion
+dcutil completion fish > /path/to/completions/fish/dcutil.fish
 ```
 
 ## Usage
