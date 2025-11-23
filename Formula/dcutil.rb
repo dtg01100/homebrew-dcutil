@@ -13,6 +13,12 @@ class Dcutil < Formula
   def install
     bin.install "dcutil"
     prefix.install "lib"
+
+    # Install bash completion
+    bash_completion.install "completion.bash" => "dcutil"
+
+    # Install zsh completion
+    zsh_completion.install "_dcutil"
   end
 
   test do

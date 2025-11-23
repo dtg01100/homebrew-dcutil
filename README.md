@@ -15,6 +15,25 @@ dcutil is a complete Devcontainer Specification implementation providing 100% co
 
 For more information, see the [main repository](https://github.com/dtg01100/dcutil).
 
+## Tab Completion
+
+This Homebrew formula includes tab completion for both bash and zsh:
+
+### Bash
+If you have bash-completion installed, dcutil completion will be automatically available.
+
+### Zsh
+Zsh completion is installed and will be available automatically if you're using the zsh shell.
+
+Alternatively, you can use the built-in completion generation feature:
+```bash
+# Generate bash completion
+dcutil completion bash > /path/to/completions/bash/dcutil
+
+# Generate zsh completion
+dcutil completion zsh > /path/to/completions/zsh/_dcutil
+```
+
 ## Usage
 
 After installation, use `dcutil` commands to manage your devcontainers:
