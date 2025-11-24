@@ -5,32 +5,23 @@ class Dcutil < Formula
   sha256 "7715378a7ea7f7a440df32b918977216b2e1711d7f43490c10d2105b6c011217"
   license "MIT"
 
-  # Linux-only for now since we don't have macOS testing
-  depends_on :linux
+  # Dependencies (alphabetical order)
+  depends_on "curl"                  # HTTP client for downloading templates/features
+  depends_on "devcontainer"          # Official Microsoft devcontainer CLI
+  depends_on "docker" => :optional   # Docker container runtime
+  depends_on "docker-compose" => :optional  # Docker Compose support
+  depends_on "git" => :optional     # Git operations
+  depends_on "jq"                    # JSON processing
+  depends_on :linux                  # Linux-only for now since we don't have macOS testing
+  depends_on "node" => :optional     # Node.js for various agents (opencode, cody, etc.)
+  depends_on "podman" => :optional   # Podman container runtime
+  depends_on "podman-compose" => :optional  # Podman Compose support
 
   # bottle do
   #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.14.tar.gz"
   #   sha256 cellar: :any_skip_relocation, arm64_ventura: "UPDATE_WITH_BOTTLE_SHA256"
   #   sha256 cellar: :any_skip_relocation, ventura: "UPDATE_WITH_BOTTLE_SHA256"
   # end
-
-  # Required dependencies
-  depends_on "jq"                    # JSON processing
-  depends_on "devcontainer"          # Official Microsoft devcontainer CLI
-  depends_on "curl"                  # HTTP client for downloading templates/features
-  depends_on "python@3.11"           # Fallback JSON processing and agent support
-
-  # Container runtime (one of these is required)
-  depends_on "docker" => :optional   # Docker container runtime
-  depends_on "podman" => :optional   # Podman container runtime
-
-  # Optional dependencies for enhanced features
-  depends_on "git" => :optional      # Git operations
-  depends_on "docker-compose" => :optional  # Docker Compose support
-  depends_on "podman-compose" => :optional  # Podman Compose support
-
-  # Node.js for various agents (opencode, cody, etc.)
-  depends_on "node" => :optional
 
   def install
     # Install the main script
@@ -113,3 +104,4 @@ class Dcutil < Formula
     assert_match "✅", output
   end
 end
+
