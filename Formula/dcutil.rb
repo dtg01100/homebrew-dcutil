@@ -49,6 +49,22 @@ class Dcutil < Formula
     bin.install_symlink libexec/"docker.sh"
     bin.install_symlink libexec/"podman.sh"
     bin.install_symlink libexec/"api_official_cli.sh"
+    bin.install_symlink libexec/"volumes.sh"
+    bin.install_symlink libexec/"security.sh"
+    bin.install_symlink libexec/"init.sh"
+    bin.install_symlink libexec/"features.sh"
+    bin.install_symlink libexec/"lockfile.sh"
+    bin.install_symlink libexec/"lifecycle.sh"
+    bin.install_symlink libexec/"environment.sh"
+    bin.install_symlink libexec/"userprobe.sh"
+    bin.install_symlink libexec/"hostrequirements.sh"
+    bin.install_symlink libexec/"shutdown.sh"
+    bin.install_symlink libexec/"schema-validation.sh"
+    bin.install_symlink libexec/"merging.sh"
+    bin.install_symlink libexec/"integration.sh"
+    bin.install_symlink libexec/"advanced.sh"
+    bin.install_symlink libexec/"build.sh"
+    bin.install_symlink libexec/"compose.sh"
   end
 
   def caveats
