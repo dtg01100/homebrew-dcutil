@@ -1,15 +1,15 @@
 class Dcutil < Formula
   desc "Enhanced devcontainer utility with advanced features"
   homepage "https://github.com/dtg01100/dcutil"
-  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.13.tar.gz"
-  sha256 "0dfb8b3971dbc509a3c02b825ff1b1323412c2d14b72afe8f5e5bf612a64ef29"
+  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.14.tar.gz"
+  sha256 "7715378a7ea7f7a440df32b918977216b2e1711d7f43490c10d2105b6c011217"
   license "MIT"
 
   # Linux-only for now since we don't have macOS testing
   depends_on :linux
 
   # bottle do
-  #   root_url "https://github.com/dtg01100/homebrew-dcutil/releases/download/dcutil-1.0.8"
+  #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.14.tar.gz"
   #   sha256 cellar: :any_skip_relocation, arm64_ventura: "UPDATE_WITH_BOTTLE_SHA256"
   #   sha256 cellar: :any_skip_relocation, ventura: "UPDATE_WITH_BOTTLE_SHA256"
   # end
