@@ -1,8 +1,8 @@
 class Dcutil < Formula
   desc "Enhanced devcontainer utility with advanced features"
   homepage "https://github.com/dtg01100/dcutil"
-  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.12.tar.gz"
-  sha256 "d7266ea51d7621d7213be2be2e7188facd715bbca13393095b3aa74bf33863f7"
+  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.13.tar.gz"
+  sha256 "0dfb8b3971dbc509a3c02b825ff1b1323412c2d14b72afe8f5e5bf612a64ef29"
   license "MIT"
 
   # Linux-only for now since we don't have macOS testing
