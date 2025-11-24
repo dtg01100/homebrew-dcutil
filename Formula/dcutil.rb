@@ -2,7 +2,7 @@ class Dcutil < Formula
   desc "Complete Devcontainer Specification Implementation"
   homepage "https://github.com/dtg01100/dcutil"
   url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.0.8.tar.gz"
-  sha256 "8ac3cf2f8737e395f901a0267000191cb42d06a769c439b8a05e482bf428df02"
+  sha256 "d7e08e7766d75cd2679ed85226f94f24fbc07689182bc7319aef9db9e1d8e91f"
   license "MIT"
 
   livecheck do
