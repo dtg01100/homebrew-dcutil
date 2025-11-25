@@ -1,8 +1,8 @@
 class Dcutil < Formula
   desc "Enhanced devcontainer utility with advanced features"
   homepage "https://github.com/dtg01100/dcutil"
-  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.3.6.tar.gz"
-  sha256 "f576913f27920cd89913e58756bb4f8a8cfb7b1cc712b497844a453838beafb9"
+  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.3.7.tar.gz"
+  sha256 "6a9ac83cbfdf7864ba8c12f96e217c497f31c440388f591e294dc808be1016e5"
   license "MIT"
 
   # Dependencies (alphabetical order)
@@ -18,7 +18,7 @@ class Dcutil < Formula
   depends_on "podman-compose" => :optional  # Podman Compose support
 
   # bottle do
-  #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.3.6.tar.gz"
+  #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.3.7.tar.gz"
   #   sha256 cellar: :any_skip_relocation, arm64_ventura: "UPDATE_WITH_BOTTLE_SHA256"
   #   sha256 cellar: :any_skip_relocation, ventura: "UPDATE_WITH_BOTTLE_SHA256"
   # end
