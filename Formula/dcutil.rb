@@ -14,6 +14,7 @@ class Dcutil < Formula
   depends_on "jq"                    # JSON processing
   depends_on :linux                  # Linux-only for now since we don't have macOS testing
   depends_on "node" => :optional     # Node.js for various agents (opencode, cody, etc.)
+  depends_on "python@3.11" => :recommended  # Python 3.11+ for feature management and JSON operations
   depends_on "podman" => :optional   # Podman container runtime
   depends_on "podman-compose" => :optional  # Podman Compose support
 
@@ -72,7 +73,10 @@ class Dcutil < Formula
 
       For full functionality, consider installing optional dependencies:
 
-        brew install git docker-compose node
+        brew install git docker-compose node python@3.11
+
+      Python 3.11+ is required for enhanced feature management (automatically installed if not present):
+        brew install python@3.11
 
       After installation, you may need to install the official devcontainer CLI:
 
