@@ -10,6 +10,7 @@ class Dcutil < Formula
   depends_on "devcontainer"          # Official Microsoft devcontainer CLI
   depends_on "docker" => :optional   # Docker container runtime
   depends_on "docker-compose" => :optional  # Docker Compose support
+  depends_on "fzf"                   # Fuzzy finder for interactive selections
   depends_on "git" => :optional     # Git operations
   depends_on "jq"                    # JSON processing
   depends_on :linux                  # Linux-only for now since we don't have macOS testing
