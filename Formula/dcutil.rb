@@ -1,8 +1,8 @@
 class Dcutil < Formula
   desc "Enhanced devcontainer utility with advanced features"
   homepage "https://github.com/dtg01100/dcutil"
-  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "3590bcb90a75c32ba8b10d692d26838caedbc267a57db23931694abc9598c873"
+  url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.5.15.tar.gz"
+  sha256 "3779c0c339cf8ce05406f7370e7a28ad1c2a84729f909b53169d7c002c4b4d56"
   license "MIT"
 
   # Dependencies (alphabetical order)
@@ -15,11 +15,12 @@ class Dcutil < Formula
   depends_on "jq"                    # JSON processing
   depends_on :linux                  # Linux-only for now since we don't have macOS testing
   depends_on "node" => :optional     # Node.js for various agents (opencode, cody, etc.)
+  depends_on "python@3.11" => :recommended  # Python 3.11+ for feature management and JSON operations
   depends_on "podman" => :optional   # Podman container runtime
   depends_on "podman-compose" => :optional  # Podman Compose support
 
   # bottle do
-  #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.2.0.tar.gz"
+  #   root_url "https://github.com/dtg01100/dcutil/archive/refs/tags/v1.5.15.tar.gz"
   #   sha256 cellar: :any_skip_relocation, arm64_ventura: "UPDATE_WITH_BOTTLE_SHA256"
   #   sha256 cellar: :any_skip_relocation, ventura: "UPDATE_WITH_BOTTLE_SHA256"
   # end
@@ -73,7 +74,10 @@ class Dcutil < Formula
 
       For full functionality, consider installing optional dependencies:
 
-        brew install git docker-compose node
+        brew install git docker-compose node python@3.11
+
+      Python 3.11+ is required for enhanced feature management (automatically installed if not present):
+        brew install python@3.11
 
       After installation, you may need to install the official devcontainer CLI:
 
