@@ -14,13 +14,19 @@ The workflow can be triggered by a `repository_dispatch` event with an empty or 
 4. Commits and pushes the changes
 
 ### Manual Trigger
-You can manually trigger the workflow using GitHub CLI or API:
+You can manually trigger the workflow using GitHub API (note: the workflow uses `repository_dispatch`, not `workflow_dispatch`):
 
 ```bash
-# Trigger without version (will auto-fetch latest)
-gh workflow run update-formula.yml --repo dtg01100/homebrew-dcutil
+# Using GitHub CLI (requires authentication)
+gh api repos/dtg01100/homebrew-dcutil/dispatches \
+  -f event_type='update-formula' \
+  -f client_payload[version]='v1.6.0'
 
-# Trigger with specific version
+# Without version (will auto-fetch latest)
+gh api repos/dtg01100/homebrew-dcutil/dispatches \
+  -f event_type='update-formula'
+
+# Using curl directly
 curl -X POST \
   -H "Authorization: token $GITHUB_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
