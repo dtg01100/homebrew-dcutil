@@ -7,21 +7,63 @@ on:
 jobs:
   update-formula:
     runs-on: ubuntu-latest
+    env:
+      EMPTY_FILE_SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Formula
+      - name: Determine Version
+        id: version
         run: |
-          # Get the new version from the dispatch payload
+          # Get the new version from the dispatch payload or fetch latest release
           VERSION="${{ github.event.client_payload.version }}"
+
+          # If VERSION is empty, fetch the latest release from GitHub
+          if [ -z "$VERSION" ]; then
+            echo "No version provided in payload, fetching latest release..."
+            VERSION=$(curl -fsSL https://api.github.com/repos/dtg01100/dcutil/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+            if [ -z "$VERSION" ]; then
+              echo "❌ Error: Could not determine version from payload or latest release"
+              exit 1
+            fi
+            echo "Using latest release version: $VERSION"
+          else
+            echo "Using version from payload: $VERSION"
+          fi
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Determined version: $VERSION"
+
+      - name: Update Formula
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
           echo "Updating to version $VERSION"
 
           # Download the tarball and calculate SHA256
           TARBALL_URL="https://github.com/dtg01100/dcutil/archive/refs/tags/${VERSION}.tar.gz"
-          SHA256=$(curl -sL "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
+          echo "Downloading tarball from: $TARBALL_URL"
+
+          # Download to temp file to verify success before hashing
+          TEMP_FILE=$(mktemp)
+          if ! curl -fsSL "$TARBALL_URL" -o "$TEMP_FILE"; then
+            echo "❌ Error: Failed to download tarball from $TARBALL_URL"
+            rm -f "$TEMP_FILE"
+            exit 1
+          fi
+
+          SHA256=$(sha256sum "$TEMP_FILE" | cut -d' ' -f1)
+          rm -f "$TEMP_FILE"
+
+          if [ -z "$SHA256" ] || [ "$SHA256" = "$EMPTY_FILE_SHA256" ]; then
+            echo "❌ Error: Downloaded file is empty or invalid"
+            exit 1
+          fi
+
           echo "SHA256: $SHA256"
 
           # Update the formula
@@ -32,6 +74,8 @@ jobs:
           cat Formula/dcutil.rb
 
       - name: Commit and Push
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -39,6 +83,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update dcutil to ${{ github.event.client_payload.version }}"
+            git commit -m "Update dcutil to $VERSION"
             git push
           fi
